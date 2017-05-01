@@ -1,0 +1,121 @@
+Testing API in adapter package:
+	Model: Ford Wagon ZTW
+	basePrice: 18445.0
+	OptionSet: Transmission
+		Option: automatic $0.0
+		Option: manual $-815.0
+	OptionSet: Power Moonroof
+		Option: default $0.0
+		Option: Power Moonroof $595.0
+	OptionSet: Brakes/Traction Control
+		Option: Standard $0.0
+		Option: ABS $400.0
+		Option: ABS with Advance Trac $1625.0
+	OptionSet: Color
+		Option: Fort Knox Gold Clearcoat Metallic $0.0
+		Option: Liquid Grey Clearcoat Metallic $0.0
+		Option: Infra-Red Clearcoat $0.0
+		Option: Grabber Green Clearcoat Metallic $0.0
+		Option: Red Clearcoat Metallic $0.0
+		Option: French Blue Clearcoat Metallic $0.0
+		Option: Twilight Blue Clearcoat Metallic $0.0
+		Option: CD Silver Clearcoat Metallic $0.0
+		Option: Pitch Black Clearcoat $0.0
+		Option: Cloud 9 White Clearcoat $0.0
+	OptionSet: Air Bags
+		Option: default $0.0
+		Option: Side Impact Air Bags $350.0	
+
+	Model: Ford Wagon ZTW
+	basePrice: 18445.0
+	OptionSet: Transmission
+		Option: automatic $0.0
+		Option: manual $-815.0
+	OptionSet: Power Moonroof
+		Option: default $0.0
+		Option: Power Moonroof $595.0
+	OptionSet: B/TC
+		Option: Standard $50.0
+		Option: ABS $400.0
+		Option: ABS with Advance Trac $1625.0
+	OptionSet: Color
+		Option: Fort Knox Gold Clearcoat Metallic $0.0
+		Option: Liquid Grey Clearcoat Metallic $0.0
+		Option: Infra-Red Clearcoat $0.0
+		Option: Grabber Green Clearcoat Metallic $0.0
+		Option: Red Clearcoat Metallic $0.0
+		Option: French Blue Clearcoat Metallic $0.0
+		Option: Twilight Blue Clearcoat Metallic $0.0
+		Option: CD Silver Clearcoat Metallic $0.0
+		Option: Pitch Black Clearcoat $0.0
+		Option: Cloud 9 White Clearcoat $0.0
+	OptionSet: Air Bags
+		Option: default $0.0
+		Option: Side Impact Air Bags $350.0
+
+
+Testing with incorrect file name:
+	Start of Loop
+	FileNotFoundException: fileName: FordWagonZT.auto
+	Please re-enter a valid file name and file extension.
+	FordWagonZTW.auto
+	Start of Loop
+	Model: Ford Wagon ZTW
+	basePrice: 18445.0
+	OptionSet: Transmission
+		Option: automatic $0.0
+		Option: manual $-815.0
+	OptionSet: Power Moonroof
+		Option: default $0.0
+		Option: Power Moonroof $595.0
+	OptionSet: Brakes/Traction Control
+		Option: Standard $0.0
+		Option: ABS $400.0
+		Option: ABS with Advance Trac $1625.0
+	OptionSet: Color
+		Option: Fort Knox Gold Clearcoat Metallic $0.0
+		Option: Liquid Grey Clearcoat Metallic $0.0
+		Option: Infra-Red Clearcoat $0.0
+		Option: Grabber Green Clearcoat Metallic $0.0
+		Option: Red Clearcoat Metallic $0.0
+		Option: French Blue Clearcoat Metallic $0.0
+		Option: Twilight Blue Clearcoat Metallic $0.0
+		Option: CD Silver Clearcoat Metallic $0.0
+		Option: Pitch Black Clearcoat $0.0
+		Option: Cloud 9 White Clearcoat $0.0
+	OptionSet: Air Bags
+		Option: default $0.0
+		Option: Side Impact Air Bags $350.0	
+	
+Testing with incorrect string conversion to number:
+	Start of Loop
+	Please re-enter a NUMBER for the price.
+	PriceFormatException: fileName:FordWagonZTW_Incorrect.auto String in question: 18A45
+	18445
+	Model: Ford Wagon ZTW
+	basePrice: 18445.0
+	OptionSet: Transmission
+		Option: automatic $0.0
+		Option: manual $-815.0
+	OptionSet: Power Moonroof
+		Option: default $0.0
+		Option: Power Moonroof $595.0
+	OptionSet: Brakes/Traction Control
+		Option: Standard $0.0
+		Option: ABS $400.0
+		Option: ABS with Advance Trac $1625.0
+	OptionSet: Color
+		Option: Fort Knox Gold Clearcoat Metallic $0.0
+		Option: Liquid Grey Clearcoat Metallic $0.0
+		Option: Infra-Red Clearcoat $0.0
+		Option: Grabber Green Clearcoat Metallic $0.0
+		Option: Red Clearcoat Metallic $0.0
+		Option: French Blue Clearcoat Metallic $0.0
+		Option: Twilight Blue Clearcoat Metallic $0.0
+		Option: CD Silver Clearcoat Metallic $0.0
+		Option: Pitch Black Clearcoat $0.0
+		Option: Cloud 9 White Clearcoat $0.0
+	OptionSet: Air Bags
+		Option: default $0.0
+		Option: Side Impact Air Bags $350.0	
+

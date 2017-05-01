@@ -1,0 +1,9 @@
+0, NonSpecifiedAutoException
+100,NegativeBasePriceException
+101,ItemNotFoundException
+200,FileNotFoundException
+201,ImproperFileFormatException
+202,FileTypeNotSupportedException
+203,PriceFormatException
+204,DuplicateItemException
+205,ItemNotFoundException

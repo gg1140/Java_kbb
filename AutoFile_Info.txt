@@ -1,0 +1,25 @@
+Notes about .auto file:
+
+Special Symbols:
+- A assignment uses the = symbol
+- A set uses the {} notation
+- A parenthesis signify a paired up item or element of a set
+- The * symbol signify that the an assignment to that left operand is compulsory for every Automobile
+
+File Specification:
+- Every line must be in the form of ... = ...
+- No more than one assignment per line
+	Counterexample: ... = ... = ...
+- Every file must start with the line in the form of "*Automobile = {(Compulsory field 1), (Compulsory field 2), (Compulsory field 3),  ...}"
+- Every option must be in the form of Option Name followed by Option Price seperated by a comma symbol
+	e.g. Color, 100.00
+- All compulsory lines must be written before any other lines
+- No empty line is allowed
+
+
+
+Notes about AutoParser:
+- KEYTERM = {"Automobile", "OptionSet Collection", "Collection Size", "Model", "Base Price"};
+- terms listed in KEYTERM cannot be used as name of option set
+- Any whitespaces before or after a Special Symbol will be removed
+- Character case difference will not affect the operation of the parser but case difference will be stored according to the Automobile object.
