@@ -1,0 +1,8 @@
+2017-04-30 22:55:42.726, Error #0, ErrorName: FileNotFoundException, Note:fileName: FordWagonZT.auto
+2017-04-30 23:12:03.787, Error #203, ErrorName: PriceFormatException, Note:fileName:FordWagonZTW_Incorrect.auto String in question: 18A45
+2017-04-30 23:12:20.768, Error #204, ErrorName: DuplicateItemException, Note:Duplicated OptSet Declaration: Color
+2017-04-30 23:12:20.768, Error #204, ErrorName: DuplicateItemException, Note:Duplicated OptSet Declaration: Transmission
+2017-04-30 23:12:20.769, Error #204, ErrorName: DuplicateItemException, Note:Duplicated OptSet Declaration: Brakes/Traction Control
+2017-04-30 23:12:20.769, Error #204, ErrorName: DuplicateItemException, Note:Duplicated OptSet Declaration: Air Bags
+2017-04-30 23:12:20.77, Error #204, ErrorName: DuplicateItemException, Note:Duplicated OptSet Declaration: Power Moonroof
+2017-04-30 23:25:47.889, Error #203, ErrorName: PriceFormatException, Note:fileName:FordWagonZTW_Incorrect.auto String in question: 18A45

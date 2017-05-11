@@ -2,53 +2,42 @@ package Model;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import Model.OptionSet.Option;
 
-abstract class Collection<T, K> implements Serializable {
-	T[] collection;
+abstract class ModelColle<T, K> implements Serializable {
+	protected ArrayList<T> collection;
 	
-	protected Collection() {
-		collection = null;
+	protected ModelColle() {
+		collection = new ArrayList<T>();
 	}
-	protected Collection(Class<T> c, int size) {
-		collection = (T[])Array.newInstance(c, size);
+	protected ModelColle(int size) {
+		collection = new ArrayList<T>(size);
 		initializeCollection();
 	}
 	
 	protected boolean addToCollection(T item) {
 		K keyOfNewItem = getKey(item);
 		T testForDuplication = searchCollection(keyOfNewItem);
-		if(testForDuplication == null) {
-			for(int i = 0; i < collection.length; i++) {
-				if(collection[i] == null) { //Add to the first empty index
-					collection[i] = item;
-					//System.out.println(collection[i].toString());
-					return true;
-				}
-			}
-			/*for(T element: collection) { //Element is a local variable for the for loop so assignment to it doesn't affect the array
-				if(element == null) {
-					element = item;
-					System.out.println(element.toString());
-					return true;
-				}
-			}*/
+		
+		if (testForDuplication == null) {
+			return collection.add(item);
 		}
 		return false;
 	}
 	
 	protected boolean removeFromCollection(K key) {
 		T item = searchCollection(key);
-		if(item != null) {
-			item = null;
+		if (item != null) {
+			collection.remove(item);
 			return true;
 		}
 		return false;
 	}
 	
 	protected int getCollectionSize() {
-		return collection.length;
+		return collection.size();
 	}
 	
 	protected T searchCollection(K key) {
