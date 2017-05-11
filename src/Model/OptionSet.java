@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import Model.OptionSet.Option;
 
-public class OptionSet extends Collection<Option, String> implements Serializable{
+public class OptionSet extends ModelColle<Option, String> implements Serializable{
 	private String name;
 	
 	/* Constructors */
@@ -15,7 +15,7 @@ public class OptionSet extends Collection<Option, String> implements Serializabl
 	}
 	
 	public OptionSet(String name, int size) {
-		super(Option.class, size);
+		super(size);
 		this.name = name;
 	}
 	
@@ -69,9 +69,7 @@ public class OptionSet extends Collection<Option, String> implements Serializabl
 	}
 	
 	protected void removeAllOption() {
-		int size = getCollectionSize();
-		collection = null;
-		collection = new Option[size]; //Allocate a new array with the same length
+		collection.clear();
 	}
 	
 	/* Update Option */

@@ -14,6 +14,7 @@ public class AutoRegex {
 	Pattern assignmentRegex = Pattern.compile("\\**([^=\\n\\r]+)=\\s*([^=\\n\\r]+)");
 	Pattern parenthesisRegex = Pattern.compile("\\( *([^)]+)(?= *\\))");
 	Pattern setNotationRegex = Pattern.compile("\\{ *([^\\{\\}]+)(?= *\\})");
+	Pattern number = Pattern.compile("[-+]?\\d*\\.?\\d+");
 	Matcher m;
 	
 	public AutoRegex() {}
@@ -113,5 +114,10 @@ public class AutoRegex {
 	/*
 	 * All output will be trimmed
 	 */
+	
+	public boolean isNumber(String line) {
+		m = number.matcher(line);
+		return m.matches();
+	}
 }
 

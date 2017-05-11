@@ -1,30 +1,33 @@
 package Adapter;
 
 import Model.Automobile;
+import Util.AutoException;
 import Util.FileIO;
 
 public abstract class proxyAutomobile {
-	public static Automobile car;
+	private static Automobile car;
 	
-	public proxyAutomobile() {
-		car = null;
-	}
+	public proxyAutomobile() {}
 	
 	/* BuildAuto Interface */
-	public void BuildAuto(String fileName) {
+	public void buildAuto(String fileName) throws AutoException{
 		FileIO file = new FileIO();
-		car = file.buildAutoObject(fileName);
+		try {
+			car = file.buildAutoObject(fileName);
+		} catch (AutoException e) {
+			throw e;
+		}
 	}
 	
 	/* UpdateAuto Interface */
 	public void updateOptionSetName(String currentName, String newName) {
-		if (avaliable()) {
+		if (available()) {
 			car.updateOptionSetName(currentName, newName);
 		}
 	}
 	
 	public void updateOptionPrice(String optSet, String opt, Double newPrice) {
-		if (avaliable()) {
+		if (available()) {
 			car.updateOptionPrice(optSet, opt, newPrice);
 		}
 	}
@@ -35,7 +38,7 @@ public abstract class proxyAutomobile {
 	}
 	
 	public String strRepresentation(String model) {
-		if (avaliable()) {
+		if (available()) {
 			return car.toString();
 		}
 		else {
@@ -44,7 +47,7 @@ public abstract class proxyAutomobile {
 	}
 	
 	/* Helper Methods */
-	private boolean avaliable() {
+	private boolean available() {
 		boolean flag = false;
 		if (car != null) {
 			flag = true;

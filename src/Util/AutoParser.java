@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
 
 import Model.Automobile;
 
@@ -28,7 +26,7 @@ public class AutoParser {
 		this.opSetTB = new Hashtable<String, String[]>();
 	}
 	
-	protected void fillLookUpTB() {
+	protected void fillLookUpTB() throws AutoException{
 		try {
 			FileReader fIn = new FileReader(inputFile);
 			BufferedReader fBuff = new BufferedReader(fIn);
@@ -62,8 +60,13 @@ public class AutoParser {
 							s3_readOps = true;
 						}
 					} else {
-						System.err.println("Input file has incorrection format!");
+						//System.err.println("Input file has incorrection format!");
 						keepReading = false;
+						fBuff.close();
+						String note = "fileName: " + inputFile + 
+								" Problem: All Complusory Fields must be listed first.";
+						AutoException incorrectFormat = new AutoException(201, note);
+						throw incorrectFormat;
 					}
 				} else { /* s1_readFileHeader */
 					 keepReading = checkFileHeader(operands[0], operands[1]);
@@ -72,16 +75,25 @@ public class AutoParser {
 			}
 			fBuff.close();
 		} catch(FileNotFoundException e) {
-
-		} catch(IOException e) {
-
-		}
+			String note = "fileName: " + inputFile;
+			AutoException missingFile = new AutoException(200, note);
+			throw missingFile;
+		} catch(IOException e) {}
 	}
 	
-	public Automobile buildAutoObject(String fileName) {
+	 protected Automobile buildAutoObject(String fileName) throws AutoException{
 		Automobile car = null;
 		if (setInputFile(fileName)) {
 			fillLookUpTB();
+			car = buildAutoObjHelper();
+		}
+		return car;
+	}
+	 
+	private Automobile buildAutoObjHelper() {
+		Automobile car = null;
+		boolean flag = true;
+		while (flag) {
 			try {
 				car = new Automobile(
 						lookUpTB.get(KEYTERM[3]), 
@@ -97,25 +109,37 @@ public class AutoParser {
 					car.addOptionSet(optSetName, optSet.length);
 					for (String element : optSet) {
 						String[] opt = strEditor.splitNTrimCommaSepStr(element);
-						car.addOption(optSetName, opt[0], Double.valueOf(opt[1]));
+						try {
+							car.addOption(optSetName, opt[0], Double.valueOf(opt[1]));
+						} catch(NumberFormatException e) {
+							String note = "fileName:" + inputFile + " Price of: " + opt[0] + " = " + opt[1];
+							AutoException priceFormatEx = new AutoException(203, note);
+							opt[1] = (String) priceFormatEx.fix();
+						}			
 					}
 				}
-			}
-			catch(NumberFormatException e) {
+				flag = false;
 				
+			} catch(NumberFormatException e) {
+				String note = "fileName:" + inputFile + " String in question: " + lookUpTB.get(KEYTERM[4]);
+				AutoException priceFormatEx = new AutoException(203, note);
+				lookUpTB.replace(KEYTERM[4], (String) priceFormatEx.fix());
 			}
 		}
 		return car;
 	}
 	
 	/* Helper Methods */
-	private boolean setInputFile(String fileName) { //Make sure file type used by the parser is valid
+	private boolean setInputFile(String fileName) throws AutoException{ //Make sure file type used by the parser is valid
 		boolean flag = validFileType(fileName);
 		if (flag) {
 			this.inputFile = fileName;
 		}
 		else {
-			System.err.println(this.getClass().getName() + " InputFile not supported");
+			//System.err.println(this.getClass().getName() + " InputFile not supported");
+			String note = "fileName:" + fileName;
+			AutoException invalidFileType = new AutoException(202, note);
+			throw invalidFileType;
 		}
 		return flag;
 	}
@@ -145,11 +169,16 @@ public class AutoParser {
 		
 		for (int i = 0; i < listOfKeys.length; i++) {
 			keyNsize = strEditor.splitNTrimCommaSepStr(listOfKeys[i]);
-			opSetTB.put(keyNsize[0], new String[Integer.valueOf(keyNsize[1])]); //Fill in opSetTB
+			if (!opSetTB.containsKey(keyNsize[0])) {
+				opSetTB.put(keyNsize[0], new String[Integer.valueOf(keyNsize[1])]); //Fill in opSetTB
+			} else {
+				String note = "Duplicated OptSet Declaration: " + keyNsize[0];
+				AutoException duplicatedOptSet = new AutoException(204, note);
+			}	
 		}
 	}
 	
-	private void addOptToOptSet(String lhs, String rhs) {
+	private void addOptToOptSet(String lhs, String rhs) throws AutoException{
 		String[] opSet = opSetTB.get(lhs);
 		String[] options;
 
@@ -165,7 +194,10 @@ public class AutoParser {
 				}
 			}
 		} else {
-			System.err.println(lhs + " is not listed in " + KEYTERM[1]); //KEYTERM[1] = "OptionSet Collection"
+			//System.err.println(lhs + " is not listed in " + KEYTERM[1]); //KEYTERM[1] = "OptionSet Collection"
+			String note = "Missing OptSet: " + lhs;
+			AutoException missingOptSet = new AutoException(205, note);
+			throw missingOptSet;
 		}
 	}
 	

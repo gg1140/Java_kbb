@@ -6,7 +6,7 @@ import java.util.Vector;
 
 import Model.OptionSet.Option;
 
-public class Automobile extends Collection<OptionSet, String> implements Serializable{
+public class Automobile extends ModelColle<OptionSet, String> implements Serializable{
 	private String /*maker,*/ model;
 	private double basePrice;
 	
@@ -18,7 +18,7 @@ public class Automobile extends Collection<OptionSet, String> implements Seriali
 	}
 	
 	public Automobile(String model, double basePrice, int numOfOptionSet) {
-		super(OptionSet.class, numOfOptionSet);
+		super(numOfOptionSet);
 		this.model = model;
 		this.basePrice = basePrice;
 	}
@@ -77,9 +77,7 @@ public class Automobile extends Collection<OptionSet, String> implements Seriali
 	}
 	
 	public void removeAllOptionSet() {
-		int size = getCollectionSize();
-		collection = null;
-		collection = new OptionSet[size]; //Allocate a new array with the same length
+		collection.clear();
 	}
 	
 	/* Update OptionSet */
