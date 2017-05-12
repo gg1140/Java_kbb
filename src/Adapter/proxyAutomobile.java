@@ -13,7 +13,7 @@ public abstract class proxyAutomobile {
 	public void buildAuto(String fileName) {
 		FileIO file = new FileIO();
 		while (true) {
-			try {
+			try {		
 				car = file.buildAutoObject(fileName);
 				break;
 			} catch (AutoException e) {

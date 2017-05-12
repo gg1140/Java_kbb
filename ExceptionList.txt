@@ -1,4 +1,4 @@
-0, NonSpecifiedAutoException, N/A
+0, NonSpecifiedAutoException, N/A.
 100,NegativeBasePriceException, Make sure the base price is not negative.
 101,ItemNotFoundException, Make sure the requested item exist in the first palce.
 200,FileNotFoundException, Make sure the File Name and File Extension is matches.

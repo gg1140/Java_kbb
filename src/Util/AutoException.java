@@ -81,7 +81,7 @@ public class AutoException extends Exception{
 		lineFromFile = fileReader.findFromExceptionFile(eFileName, errorNo);
 		if (lineFromFile != null) {
 			processedStr = strEditor.splitNTrimCommaSepStr(lineFromFile);
-			if (processedStr.length == 2) {
+			if (processedStr.length == 3) {
 				this.errorNo = errorNo;
 				errorName = processedStr[1];
 				fixSuggestion = processedStr[2];
