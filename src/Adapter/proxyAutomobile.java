@@ -10,12 +10,15 @@ public abstract class proxyAutomobile {
 	public proxyAutomobile() {}
 	
 	/* BuildAuto Interface */
-	public void buildAuto(String fileName) throws AutoException{
+	public void buildAuto(String fileName) {
 		FileIO file = new FileIO();
-		try {
-			car = file.buildAutoObject(fileName);
-		} catch (AutoException e) {
-			throw e;
+		while (true) {
+			try {
+				car = file.buildAutoObject(fileName);
+				break;
+			} catch (AutoException e) {
+				fileName = (String) e.fix();
+			}
 		}
 	}
 	
@@ -35,15 +38,6 @@ public abstract class proxyAutomobile {
 	/* PrintAuto Interface */
 	public void printAuto() {
 		System.out.println(car.toString());
-	}
-	
-	public String strRepresentation(String model) {
-		if (available()) {
-			return car.toString();
-		}
-		else {
-			return "";
-		}
 	}
 	
 	/* Helper Methods */

@@ -3,15 +3,15 @@ package Util;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
+@SuppressWarnings("serial")
 public class AutoException extends Exception{
 	private final String eFileName = "ExceptionList.txt";
 	private final String eLogFileName = "ExceptionLog.txt";
 	
+	private Timestamp timeStamp;
 	private int errorNo;
 	private String errorName;
-	//private String errorDescription;
-	//private String fixSuggestion;
-	private Timestamp timeStamp;
+	private String fixSuggestion;
 	private String extraNote;
 	
 	public AutoException() {
@@ -33,68 +33,34 @@ public class AutoException extends Exception{
 		this.extraNote = extraNotes;
 		log();
 	}
-
-	/**
-	 * Setter for errorNo
-	 * @param errorNo
-	 */
 	
-	/**
-	 * Getter for errorNo
-	 * @return errorNo
-	 */
 	public int getErrorNo() {
 		return errorNo;
 	}
 	
-	/**
-	 * Getter for errorName
-	 * @return errorName
-	 */
 	public String getErrorName() {
 		return errorName;
 	}
 	
-	/**
-	 * Getter for errorDescription
-	 * @return errorDescription
-	 */
-	/*public String getErrorDescription() {
-		return errorDescription;
-	}*/
-	
-	/**
-	 * Getter for fixSuggestion
-	 * @return fixSuggestion
-	 */
-	/*public String getFixSuggestion() {
+	public String getFixSuggestion() {
 		return fixSuggestion;
-	}*/
+	}
 	
-	/**
-	 * Setter for Extra Notes
-	 * @param extraNotes
-	 */
 	public void setExtraNote(String extraNotes) {
 		this.extraNote = extraNotes;
 	}
 	
-	/**
-	 * Getter for extraNotes
-	 * @return extraNotes
-	 */
 	public String getExtraNote() {
 		return extraNote;
 	}
 	
 	/**
-	 * Initialize all fields when errorNo is not specified or invalid errorNo was setted
+	 * Initialize all fields when errorNo is not specified or invalid errorNo was set
 	 */
 	private void initToNonSpecified() {
 		this.errorNo = 0;
 		this.errorName = "NonSpecifiedAutoException";
-		//this.errorDescription = "";
-		//this.fixSuggestion = "Please enter a valid errorNo";
+		this.fixSuggestion = "N/A";
 		this.timeStamp = new Timestamp(
 				Calendar.getInstance().getTime().getTime());
 	}
@@ -118,8 +84,7 @@ public class AutoException extends Exception{
 			if (processedStr.length == 2) {
 				this.errorNo = errorNo;
 				errorName = processedStr[1];
-				//errorDescription = processedStr[2];
-				//fixSuggestion = processedStr[3];
+				fixSuggestion = processedStr[2];
 				this.timeStamp = new Timestamp(
 						Calendar.getInstance().getTime().getTime());
 				flag = true;

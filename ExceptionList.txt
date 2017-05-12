@@ -1,9 +1,9 @@
-0, NonSpecifiedAutoException
-100,NegativeBasePriceException
-101,ItemNotFoundException
-200,FileNotFoundException
-201,ImproperFileFormatException
-202,FileTypeNotSupportedException
-203,PriceFormatException
-204,DuplicateItemException
-205,ItemNotFoundException
+0, NonSpecifiedAutoException, N/A
+100,NegativeBasePriceException, Make sure the base price is not negative.
+101,ItemNotFoundException, Make sure the requested item exist in the first palce.
+200,FileNotFoundException, Make sure the File Name and File Extension is matches.
+201,ImproperFileFormatException, Make sure every information within the File follows the specification.
+202,FileTypeNotSupportedException, Make sure File Type is supported.
+203,PriceFormatException, Make sure the input is in number character.
+204,DuplicateItemException, Make sure the same key wasn't used twice.
+205,ItemNotFoundException, Make sure the requested item exist in the first palce.
