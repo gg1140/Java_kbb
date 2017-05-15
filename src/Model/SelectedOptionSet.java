@@ -10,7 +10,7 @@ public class SelectedOptionSet extends OptionSet{
 		optSetLabels = new ArrayList<String>();
 	}
 	
-	public boolean addSelectedOption(String optSet, Option opt) {
+	protected boolean addSelectedOption(String optSet, Option opt) {
 		if (opt == null)
 			opt = new Option();
 		
@@ -20,7 +20,7 @@ public class SelectedOptionSet extends OptionSet{
 		return output;
 	}
 	
-	public boolean removeSelectedOption(String optSet) {
+	protected boolean removeSelectedOption(String optSet) {
 		int index = optSetLabels.indexOf(optSet);
 		boolean output = removeFromCollection(index);
 		if (output) {
@@ -29,36 +29,36 @@ public class SelectedOptionSet extends OptionSet{
 		return output;
 	}
 	
-	public void removeAllSelectedOptions() {
+	protected void removeAllSelectedOptions() {
 		removeAllOption();
 	}
 	
-	public void setOptSetLabel(String currentName, String newName) {
+	protected void setOptSetLabel(String currentName, String newName) {
 		int index = optSetLabels.indexOf(currentName);
 		optSetLabels.set(index, newName);
 	}
 	
-	public void setSelectedOption(String optSet, Option opt) {
+	protected void setSelectedOption(String optSet, Option opt) {
 		int index = optSetLabels.indexOf(optSet);
 		if (index >= 0) {
 			collection.set(index, opt);
 		}
 	}
 	
-	public Option getSelectedOption(String optSet) {
+	protected Option getSelectedOption(String optSet) {
 		int index = optSetLabels.indexOf(optSet);
 		return collection.get(index);
 	}
 	
-	public String[] getAllSelectedOpName() {
+	protected String[] getAllSelectedOpName() {
 		return getAllOptionName();
 	}
 
-	public Double[] getAllSelectedOpPrice() {
+	protected Double[] getAllSelectedOpPrice() {
 		return getAllOptionPrice();
 	}
 	
-	public Double sumOfAllSelectedOpPrice() {
+	protected Double sumOfAllSelectedOpPrice() {
 		Double[] allOpPrice = getAllOptionPrice();
 		Double output = 0.0;
 		for (Double price : allOpPrice) {
@@ -67,7 +67,7 @@ public class SelectedOptionSet extends OptionSet{
 		return output;
 	}
 	
-	public String strRep() {
+	protected String strRep() {
 		StringBuilder output = new StringBuilder(getName() + ":\n");
 		for (int i = 0; i < collection.size(); i++) {
 			if (collection.get(i).getName() != "Unknown") {
