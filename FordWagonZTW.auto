@@ -1,4 +1,5 @@
-*Automobile = {(Model), (Base Price), (Collection Size), (OptionSet Collection)}
+*Automobile = {(Model), (Base Price), (Collection Size), (OptionSet Collection), (Maker)}
+*Maker=Ford
 *Model=Ford Wagon ZTW
 *Base Price=18445
 *Collection Size=5

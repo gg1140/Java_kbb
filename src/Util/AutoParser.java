@@ -12,7 +12,7 @@ import Model.Automobile;
 
 public class AutoParser {
 	private final String[] KEYTERM = {"Automobile", "OptionSet Collection", 
-										"Collection Size", "Model", "Base Price"};
+										"Collection Size", "Model", "Base Price", "Maker"};
 	private final String SUPPORTED_FILE_EXT = ".auto";
 	private String inputFile;
 	private AutoRegex strEditor;
@@ -96,6 +96,7 @@ public class AutoParser {
 		while (flag) {
 			try {
 				car = new Automobile(
+						lookUpTB.get(KEYTERM[5]),
 						lookUpTB.get(KEYTERM[3]), 
 						Double.valueOf(lookUpTB.get(KEYTERM[4])),
 						Integer.parseInt(lookUpTB.get(KEYTERM[2])));

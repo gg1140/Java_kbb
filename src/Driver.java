@@ -4,33 +4,37 @@ import Adapter.CreateAuto;
 import Adapter.PrintAuto;
 import Adapter.UpdateAuto;
 import Adapter.kbbFacade;
-import Util.AutoException;
+import Model.Automobile;
+import Util.FileIO;
 
 public class Driver {
 	public static void main(String[] args) {
 		/** Test Code **/
 		//Testing with incorrect file name:
-		String fileName = "FordWagonZT.auto";
-		System.out.println("Start of Loop");
+		String fileName = "FordWagonZTW.auto";
+		System.out.println("Start Test");
 		CreateAuto carBuilder = new kbbFacade();
 		carBuilder.buildAuto(fileName);
 		PrintAuto carPrint = new kbbFacade();
-		carPrint.printAuto();
-
-		//Testing with incorrect string conversion to number:
-		/*String fileName = "FordWagonZTW_Incorrect.auto";
-		boolean flag = true;
-		while (flag) {
-			try {
-				System.out.println("Start of Loop");
-				CreateAuto carBuilder = new buildAuto();
-				carBuilder.buildAuto(fileName);
-				PrintAuto carPrint = new buildAuto();
-				carPrint.printAuto();
-				flag = false;
-			} catch (AutoException e) {
-				fileName = (String) e.fix();
-			}
-		}*/
+		UpdateAuto carUpdate = new kbbFacade();
+		carPrint.printAllSelectedOpts("Ford Wagon ZTW");
+		carUpdate.updateSelectedOption("Ford Wagon ZTW", "Transmission", "Manual");
+		carPrint.printAllSelectedOpts("Ford Wagon ZTW");
+		
+		
+		//Testing Chosen Options
+		/*
+		FileIO file = new FileIO();
+		try {
+			Automobile car = file.buildAutoObject(fileName);
+			System.out.println("Testing Getter and Setter:\n");
+			car.setSelectedOption("Transmission", "manual");
+			System.out.println(car.strRepSelectedOps());
+			car.updateOptionSetName("Transmission", "trans");
+			System.out.println(car.getSelectedOptionName("trans"));
+			System.out.println("Testing Update methods:\n" + car.strRepSelectedOps());
+		} catch(Exception e) {}
+		*/
+		
 	}
 }

@@ -3,20 +3,31 @@ package Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import Model.OptionSet.Option;
-
+@SuppressWarnings("serial")
 public class OptionSet extends ModelColle<Option, String> implements Serializable{
 	private String name;
+	private Option selectedOp;
 	
 	/* Constructors */
 	public OptionSet() {
 		super();
 		this.name = null;
+		//this.selectedOp = null;
+		this.selectedOp = new Option();
+	}
+	
+	public OptionSet(String name) {
+		super();
+		this.name = name;
+		//this.selectedOp = null;
+		this.selectedOp = new Option();
 	}
 	
 	public OptionSet(String name, int size) {
 		super(size);
 		this.name = name;
+		//this.selectedOp = null;
+		this.selectedOp = new Option();
 	}
 	
 	/* Abstract Methods from Collection */
@@ -24,16 +35,14 @@ public class OptionSet extends ModelColle<Option, String> implements Serializabl
 		//for(Option element : collection) {
 	}
 	
-	
 	protected String getKey(Option item) {
 		return item.getName();
 	}
 	
 	protected boolean matchKey(String k1, String k2) {
-		if(k1.equalsIgnoreCase(k2)) {
+		if (k1.equalsIgnoreCase(k2)) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -47,11 +56,11 @@ public class OptionSet extends ModelColle<Option, String> implements Serializabl
 		return this.name;	
 	}
 	
-	protected String strRepresentation() {
+	protected String strRep() {
 		StringBuilder output = new StringBuilder("OptionSet: " + name + "\n");
 		for (Option element : collection) {
 			if (element != null) 
-				output.append("\t" + element.strRepresentation() + "\n");
+				output.append("\t" + element.strRep() + "\n");
 		}
 		return output.toString();
 	}
@@ -75,7 +84,7 @@ public class OptionSet extends ModelColle<Option, String> implements Serializabl
 	/* Update Option */
 	protected boolean updateOption(String currentName, String newName, Double newPrice) {
 		Option requestedOption = searchCollection(currentName);
-		if(requestedOption != null) {
+		if (requestedOption != null) {
 			requestedOption.setName(newName);
 			requestedOption.setPrice(newPrice);
 			return true;
@@ -85,7 +94,7 @@ public class OptionSet extends ModelColle<Option, String> implements Serializabl
 	
 	protected boolean updateOptionName(String currentName, String newName) {
 		Option requestedOption = searchCollection(currentName);
-		if(requestedOption != null) {
+		if (requestedOption != null) {
 			requestedOption.setName(newName);
 			return true;
 		}
@@ -94,13 +103,23 @@ public class OptionSet extends ModelColle<Option, String> implements Serializabl
 	
 	protected boolean updateOptionPrice(String currentName, double newPrice) {
 		Option requestedOption = searchCollection(currentName);
-		if(requestedOption != null) {
+		if (requestedOption != null) {
 			requestedOption.setPrice(newPrice);
 			return true;
 		}
 		return false;
 	}
 	
+	protected boolean setSelectedOption(String name) {
+		Option requestedOption = searchCollection(name);
+		if (requestedOption != null) {
+			selectedOp = requestedOption;
+			//System.out.println(selectedOp.strRep());
+			return true;
+		} else {
+			return false;
+		}
+	}
 	/* Read Single Option */
 	protected Double getOptionPrice(String name) {
 		Option requestedOption = searchCollection(name);
@@ -113,12 +132,16 @@ public class OptionSet extends ModelColle<Option, String> implements Serializabl
 	protected String getOptionStrRepresentation(String name) {
 		Option requestedOption = searchCollection(name);
 		if (requestedOption != null) {
-			return requestedOption.strRepresentation();
+			return requestedOption.strRep();
 		}
 		return "";
 	}
 	
-	/* Real Multiple Options */
+	protected Option getSelectedOption() {
+		return selectedOp;
+	}
+	
+	/* Read Multiple Options */
 	protected String[] getAllOptionName() {
 		ArrayList<String> nameCollection = new ArrayList<String>();
 		for (Option element : collection) {
@@ -152,47 +175,4 @@ public class OptionSet extends ModelColle<Option, String> implements Serializabl
 		 */
 	
 	//protected String[][] getOptionsFromPriceRange(Double upperLimit, Double lowerLimit) //Will be implemented in later lab
-	
-	/**
-	 ** Option Inner Class
-	 **/
-	protected class Option implements Serializable {
-		private String name;
-		private Double price;
-		
-		/* Constructors */
-		protected Option() {
-			this.name = null;
-			this.price = 0.0;
-		}
-		
-		public Option(String name, Double price) {
-			//super();
-			this.name = name;
-			this.price = price;
-		}
-
-		/* Getter & Setter Functions */
-		protected String getName() {
-			return name;
-		}
-
-		protected void setName(String name) {
-			this.name = name;
-		}
-
-		protected double getPrice() {
-			return price;
-		}
-
-		protected void setPrice(Double price) {
-			this.price = price;
-		}
-		
-		/* Miscellaneous Functions */
-		protected String strRepresentation() {
-			StringBuilder output = new StringBuilder("Option: " + name + " $" + String.valueOf(price));
-			return output.toString();
-		}
-	}
 }

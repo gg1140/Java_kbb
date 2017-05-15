@@ -1,6 +1,7 @@
 package Adapter;
 
 public interface UpdateAuto {
-	void updateOptionSetName(String currentName, String newName);
-	void updateOptionPrice(String optSet, String opt, Double newPrice);
+	void updateOptionSetName(String model, String currentName, String newName);
+	void updateOptionPrice(String model, String optSet, String opt, Double newPrice);
+	void updateSelectedOption(String model, String optSet, String opt);
 }

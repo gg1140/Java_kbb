@@ -1,5 +1,7 @@
 package Adapter;
 
 public interface PrintAuto {
-	void printAuto();
+	void printAuto(String model);
+	void printAllAuto();
+	void printAllSelectedOpts(String model);
 }
