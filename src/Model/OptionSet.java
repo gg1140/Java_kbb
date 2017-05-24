@@ -113,7 +113,9 @@ public class OptionSet extends ModelColle<Option, String> implements Serializabl
 	protected boolean setSelectedOption(String name) {
 		Option requestedOption = searchCollection(name);
 		if (requestedOption != null) {
-			selectedOp = requestedOption;
+			//selectedOp = requestedOption;
+			selectedOp.setName(requestedOption.getName());
+			selectedOp.setPrice(requestedOption.getPrice());
 			//System.out.println(selectedOp.strRep());
 			return true;
 		} else {

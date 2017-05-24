@@ -7,20 +7,21 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 abstract class ModelColle<T, K> implements Serializable {
 	protected ArrayList<T> collection;
+	protected boolean duplicationAllowance;
 	
 	protected ModelColle() {
 		collection = new ArrayList<T>();
+		duplicationAllowance = false;
 	}
 	protected ModelColle(int size) {
 		collection = new ArrayList<T>(size);
 		initializeCollection();
+		duplicationAllowance = false;
 	}
 	
 	protected boolean addToCollection(T item) {
 		K keyOfNewItem = getKey(item);
-		T testForDuplication = searchCollection(keyOfNewItem);
-		
-		if (testForDuplication == null) {
+		if (!isDuplicated(keyOfNewItem)) {
 			return collection.add(item);
 		}
 		return false;
@@ -77,6 +78,29 @@ abstract class ModelColle<T, K> implements Serializable {
 			}
 		}
 		return -1;
+	}
+	
+	/**
+	 * Testing for item duplication in collection.
+	 * @param key
+	 * @return True ~ Item already exist in collection
+	 * @return False ~ Item doesn't exist in collection
+	 */
+	protected boolean isDuplicated(K key) {
+		boolean output = !duplicationAllowance; //If duplication is allowed output is always false.
+		if (!duplicationAllowance) {
+			if (searchCollection(key) == null) {
+				output = false;
+			}
+			else {
+				output = true;
+			}
+		}
+		return output;
+	}
+	
+	protected void setDuplicationAllowance(boolean allowance) {
+		this.duplicationAllowance = allowance;
 	}
 	
 	protected abstract void initializeCollection();

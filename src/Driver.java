@@ -32,6 +32,7 @@ public class Driver {
 			car.setSelectedOption("Transmission", "manual");
 			System.out.println(car.strRepSelectedOps());
 			car.updateOptionSetName("Transmission", "trans");
+			//System.out.println(car.toString());
 			System.out.println(car.getSelectedOptionName("trans"));
 			System.out.println("Testing Update methods:\n" + car.strRepSelectedOps());
 		} catch(Exception e) {}

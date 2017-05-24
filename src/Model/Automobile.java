@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Automobile extends ModelColle<OptionSet, String> implements Serializable{
 	private String maker, model;
 	private double basePrice;
-	private SelectedOptionSet selectedOps;
+	private SelectedOpSet selectedOps;
 	
 	/*Constructors*/
 	public Automobile() {
@@ -45,17 +45,17 @@ public class Automobile extends ModelColle<OptionSet, String> implements Seriali
 		OptionSet requestedOptSet = searchCollection(optSetName);
 		if (requestedOptSet != null) {
 			output = requestedOptSet.setSelectedOption(optName);
-			selectedOps.setSelectedOption(optSetName, requestedOptSet.getSelectedOption());
+			//selectedOps.setSelectedOption(optSetName, requestedOptSet.getSelectedOption());
 		}
 		return output;
 	}
 	
 	public String getSelectedOptionName(String optSetName) {
-		return selectedOps.getSelectedOption(optSetName).getName();
+		return selectedOps.getSelectedOp(optSetName).getName();
 	}
 	
 	public Double getSelectedOptionPrice(String optSetName) {
-		return selectedOps.getSelectedOption(optSetName).getPrice();
+		return selectedOps.getSelectedOp(optSetName).getPrice();
 	}
 	
 	/* Abstract Methods from Collection */
@@ -121,17 +121,18 @@ public class Automobile extends ModelColle<OptionSet, String> implements Seriali
 	/* Create & Delete OptionSet */
 	public boolean addOptionSet(String name, int size) {
 		OptionSet newOptSet = new OptionSet(name, size);
-		selectedOps.addSelectedOption(name, null);
+		//selectedOps.addSelectedOption(name, null);
+		selectedOps.addSelectedOp(newOptSet);
 		return addToCollection(newOptSet);
 	}
 	
 	public boolean removeOptionSet(String name) {
-		selectedOps.removeSelectedOption(name);
+		selectedOps.removeSelectedOp(name);
 		return removeFromCollection(name);
 	}
 	
 	public void removeAllOptionSet() {
-		selectedOps.removeAllSelectedOptions();
+		selectedOps.removeAllSelectedOp();
 		collection.clear();
 	}
 	
@@ -140,7 +141,7 @@ public class Automobile extends ModelColle<OptionSet, String> implements Seriali
 		OptionSet requestedOption = searchCollection(currentName);
 		if (requestedOption != null) {
 			requestedOption.setName(newName);
-			selectedOps.setOptSetLabel(currentName, newName);
+			selectedOps.setOpSetLabel(currentName, newName);
 			return true;
 		}
 		return false;

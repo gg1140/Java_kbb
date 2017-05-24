@@ -1,27 +1,27 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SelectedOptionSet extends OptionSet{
+@SuppressWarnings("serial")
+public class SelectedOptionSet extends OptionSet implements SelectedOpSet{
 	private ArrayList<String> optSetLabels;
 	
 	public SelectedOptionSet() {
 		super("Selected Option");
 		optSetLabels = new ArrayList<String>();
+		setDuplicationAllowance(true);
 	}
 	
-	protected boolean addSelectedOption(String optSet, Option opt) {
-		if (opt == null)
-			opt = new Option();
-		
-		boolean output = addToCollection(opt);
+	public boolean addSelectedOp(OptionSet opSet) {
+		boolean output = addToCollection(opSet.getSelectedOption());
 		if (output)
-			optSetLabels.add(optSet);
+			optSetLabels.add(opSet.getName());
 		return output;
 	}
 	
-	protected boolean removeSelectedOption(String optSet) {
-		int index = optSetLabels.indexOf(optSet);
+	public boolean removeSelectedOp(String opSet) {
+		int index = optSetLabels.indexOf(opSet);
 		boolean output = removeFromCollection(index);
 		if (output) {
 			optSetLabels.remove(index);
@@ -29,36 +29,29 @@ public class SelectedOptionSet extends OptionSet{
 		return output;
 	}
 	
-	protected void removeAllSelectedOptions() {
+	public void removeAllSelectedOp() {
 		removeAllOption();
 	}
 	
-	protected void setOptSetLabel(String currentName, String newName) {
+	public void setOpSetLabel(String currentName, String newName) {
 		int index = optSetLabels.indexOf(currentName);
 		optSetLabels.set(index, newName);
 	}
 	
-	protected void setSelectedOption(String optSet, Option opt) {
-		int index = optSetLabels.indexOf(optSet);
-		if (index >= 0) {
-			collection.set(index, opt);
-		}
-	}
-	
-	protected Option getSelectedOption(String optSet) {
-		int index = optSetLabels.indexOf(optSet);
+	public Option getSelectedOp(String opSet) {
+		int index = optSetLabels.indexOf(opSet);
 		return collection.get(index);
 	}
 	
-	protected String[] getAllSelectedOpName() {
+	public String[] getAllSelectedOpName() {
 		return getAllOptionName();
 	}
 
-	protected Double[] getAllSelectedOpPrice() {
+	public Double[] getAllSelectedOpPrice() {
 		return getAllOptionPrice();
 	}
 	
-	protected Double sumOfAllSelectedOpPrice() {
+	public Double sumOfAllSelectedOpPrice() {
 		Double[] allOpPrice = getAllOptionPrice();
 		Double output = 0.0;
 		for (Double price : allOpPrice) {
@@ -67,10 +60,11 @@ public class SelectedOptionSet extends OptionSet{
 		return output;
 	}
 	
-	protected String strRep() {
+	public String strRep() {
 		StringBuilder output = new StringBuilder(getName() + ":\n");
+		//System.out.println(collection.size());
 		for (int i = 0; i < collection.size(); i++) {
-			if (collection.get(i).getName() != "Unknown") {
+			if (!collection.get(i).getName().equalsIgnoreCase("Unknown")) {
 				output.append("\t" + optSetLabels.get(i) + ": " + 
 						collection.get(i).strRep() + "\n");
 			}
