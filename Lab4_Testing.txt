@@ -1,0 +1,103 @@
+Testing without locking the instance of Automobile in AutoEditor:
+	Start Test...
+	updating op name to stick shift
+	Failed to change option price! Could not find option
+	updating op name to manual
+	Success in changing option price
+	updating op name to stick shift
+	Failed to change option price! Could not find option
+	updating op name to manual
+	updating op name to stick shift
+	Failed to change option price! Could not find option
+	updating op name to manual
+	updating op name to stick shift
+	updating op name to manual
+	Success in changing option price
+	updating op name to stick shift
+	updating op name to manual
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	t1 is dead.
+	t2 is dead.
+	Maker: Ford
+	Model: Ford Wagon ZTW
+	basePrice: 18445.0
+	OptionSet: Transmission
+		Option: automatic $0.0
+		Option: manual $-500.0
+	OptionSet: Power Moonroof
+		Option: default $0.0
+		Option: Power Moonroof $595.0
+	OptionSet: Brakes/Traction Control
+		Option: Standard $0.0
+		Option: ABS $400.0
+		Option: ABS with Advance Trac $1625.0
+	OptionSet: Color
+		Option: Fort Knox Gold Clearcoat Metallic $0.0
+		Option: Liquid Grey Clearcoat Metallic $0.0
+		Option: Infra-Red Clearcoat $0.0
+		Option: Grabber Green Clearcoat Metallic $0.0
+		Option: Red Clearcoat Metallic $0.0
+		Option: French Blue Clearcoat Metallic $0.0
+		Option: Twilight Blue Clearcoat Metallic $0.0
+		Option: CD Silver Clearcoat Metallic $0.0
+		Option: Pitch Black Clearcoat $0.0
+		Option: Cloud 9 White Clearcoat $0.0
+	OptionSet: Air Bags
+		Option: default $0.0
+		Option: Side Impact Air Bags $350.0	
+	
+Testing with lock on the instance of Automobile in AutoEditor:
+	Start Test...
+	updating op name to stick shift
+	updating op name to manual
+	updating op name to stick shift
+	updating op name to manual
+	updating op name to stick shift
+	updating op name to manual
+	updating op name to stick shift
+	updating op name to manual
+	updating op name to stick shift
+	updating op name to manual
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	Success in changing option price
+	t1 is dead.
+	t2 is dead.
+	Maker: Ford
+	Model: Ford Wagon ZTW
+	basePrice: 18445.0
+	OptionSet: Transmission
+		Option: automatic $0.0
+		Option: manual $-500.0
+	OptionSet: Power Moonroof
+		Option: default $0.0
+		Option: Power Moonroof $595.0
+	OptionSet: Brakes/Traction Control
+		Option: Standard $0.0
+		Option: ABS $400.0
+		Option: ABS with Advance Trac $1625.0
+	OptionSet: Color
+		Option: Fort Knox Gold Clearcoat Metallic $0.0
+		Option: Liquid Grey Clearcoat Metallic $0.0
+		Option: Infra-Red Clearcoat $0.0
+		Option: Grabber Green Clearcoat Metallic $0.0
+		Option: Red Clearcoat Metallic $0.0
+		Option: French Blue Clearcoat Metallic $0.0
+		Option: Twilight Blue Clearcoat Metallic $0.0
+		Option: CD Silver Clearcoat Metallic $0.0
+		Option: Pitch Black Clearcoat $0.0
+		Option: Cloud 9 White Clearcoat $0.0
+	OptionSet: Air Bags
+		Option: default $0.0
+		Option: Side Impact Air Bags $350.0

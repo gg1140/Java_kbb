@@ -6,7 +6,7 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class Automobile extends ModelColle<OptionSet, String> implements Serializable{
 	private String maker, model;
-	private double basePrice;
+	private Double basePrice;
 	private SelectedOpSet selectedOps;
 	
 	/*Constructors*/
@@ -82,7 +82,7 @@ public class Automobile extends ModelColle<OptionSet, String> implements Seriali
 		return this.model;
 	}
 	
-	public double getBasePrice() {
+	public Double getBasePrice() {
 		return this.basePrice;
 	}
 
