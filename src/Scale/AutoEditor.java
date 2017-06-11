@@ -43,40 +43,16 @@ public class AutoEditor implements Runnable{
 
 	/* FunctNo = 4 */
 	public void updateOptionName(String opSet, String currentName, String newName) {
-		// For Testing only. Undo comment for test code
-		/*synchronized(car) {
-			for (int i = 0; i < 10; i++) {
-				synchronized(System.out) {
-					if(i%2 == 0) {
-						System.out.println("updating op name to " + newName);
-						car.updateOptionName(opSet, currentName, newName);
-					} else {
-						System.out.println("updating op name to " + currentName);
-						car.updateOptionName(opSet, newName, currentName);
-					}
-				}
-				randomWait();
-			}
-		}*/
-		car.updateOptionName(opSet, currentName, newName);
+		synchronized(car) {
+			car.updateOptionName(opSet, currentName, newName);
+		}
 	}
 	
 	/* FunctNo = 5 */
 	public void updateOptionPrice(String opSet, String opt, Double newPrice) {	
-		// For Testing only. Undo comment for test code
-		/*synchronized(car) {
-			for (int i = 0; i < 10; i++) {
-				synchronized(System.out) {
-					if (car.updateOptionPrice(opSet, opt, newPrice)) {
-						System.out.println("Success in changing option price");
-					} else {
-						System.out.println("Failed to change option price! Could not find option");
-					}
-				}
-				randomWait();
-			}
-		}*/
-		car.updateOptionPrice(opSet, opt, newPrice);
+		synchronized(car) {
+			car.updateOptionPrice(opSet, opt, newPrice);
+		}
 	}
 	
 	/* FunctNo = 6 */
